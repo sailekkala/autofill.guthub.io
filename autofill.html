@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <title>Puzzle</title>
+        <script>
+            function autoFill() {
+                var count = 0;
+                var temp;
+                if(document.fr.total.value!= ''){
+                    if(document.fr.a.value!="")count++;
+                    else temp=1;
+                    if(document.fr.b.value!="")count++;
+                    else temp=2;
+                    if(document.fr.c.value!="")count++;
+                    else temp=3;
+                    if(document.fr.d.value!="")count++;
+                    else temp=4;
+                    if(count === 3) {
+                        var t = parseInt(document.fr.total.value);
+                        var x, y, z;
+                        switch (temp) {
+                            case 1:
+                                x = parseInt(document.fr.b.value);
+                                y = parseInt(document.fr.c.value);
+                                z = parseInt(document.fr.d.value);
+                                document.fr.a.value = t - x - y - z;
+                                break;
+                            case 2:
+                                x = parseInt(document.fr.a.value);
+                                y = parseInt(document.fr.c.value);
+                                z = parseInt(document.fr.d.value);
+                                document.fr.b.value = t - x - y - z;
+                                break;
+                            case 3:
+                                x = parseInt(document.fr.a.value);
+                                y = parseInt(document.fr.b.value);
+                                z = parseInt(document.fr.d.value);
+                                document.fr.c.value = t - x - y - z;
+                                break;
+                            case 4:
+                                x = parseInt(document.fr.a.value);
+                                y = parseInt(document.fr.b.value);
+                                z = parseInt(document.fr.c.value);
+                                document.fr.d.value = t - x - y - z;
+                                break;
+                        }
+
+                    } else {
+                        if((document.fr.a.value != "") && (document.fr.b.value != "") && (document.fr.c.value != "")  && (document.fr.d.value != "")){
+                            document.fr.total.value = parseInt(document.fr.a.value)+ parseInt(document.fr.b.value) + parseInt(document.fr.c.value)+parseInt(document.fr.d.value);
+                        }
+                    }
+                }
+
+            }
+        </script>
+        <style>
+            label{
+                margin-right: 10px;
+            }
+            input{
+                font-size: 20px;
+                margin: 10px;
+            }
+            button{
+                padding: 2px 10px;
+                font-size: 19px;
+                border-radius: 11px;
+                cursor: pointer;
+            }
+            button:hover{
+                transform: scale(1.1);
+            }
+        </style>
+    </head>
+    <body>
+        <form name="fr" align = center >
+            <label>A: </label><input type="text" name="a" onkeyup="autoFill()"><br>
+            <label>B: </label><input type="text" name="b" onkeyup="autoFill()"><br>
+            <label>C: </label><input type="text" name="c" onkeyup="autoFill()"><br>
+            <label>D: </label><input type="text" name="d" onkeyup="autoFill()"><br>
+            <label>-----------------------------------------------------------</label><br>
+            <label style="margin-left: -19px;">Total:</label>
+            <input type="text" onkeyup="autoFill()" name="total"><br>
+            <button type="reset">Reset</button>
+        </form>
+    </body>
+</html>
